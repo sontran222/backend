@@ -3,6 +3,7 @@ package com.DeviceManager.Device.Controller;
 import com.DeviceManager.Device.Entity.Area;
 import com.DeviceManager.Device.Service.AreaService;
 import com.DeviceManager.Device.dto.AreaDTO;
+import com.DeviceManager.Device.dto.smallDTO.GetAreaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +29,8 @@ public class AreaController {
         return areaService.updateArea(AreaId, request);
     }
 
-    @GetMapping("areas/onlyArea")
-    public List<Area> getAreasOnlyArea(){
-        return areaService.getAllListOnlyAreas();
+    @GetMapping("areas/only-areas")
+    public List<GetAreaDTO> getAllAreas(){
+        return areaService.getOnlyAreas();
     }
 }

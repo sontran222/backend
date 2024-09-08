@@ -9,9 +9,8 @@ import java.util.List;
 
 @Repository
 public interface AreaRepository extends JpaRepository<Area, Integer> {
-//    @Query("SELECT u FROM User u WHERE u.username = ?1")
-//    User findUserByUsername(String username);
-
     @Query(value = "SELECT area FROM Area", nativeQuery = true)
-    List<Area> findAllArea();
+    List<String> findAllOnlyAreas();
+
+
 }

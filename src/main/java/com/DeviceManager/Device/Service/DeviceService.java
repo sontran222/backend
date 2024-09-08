@@ -5,9 +5,11 @@ import com.DeviceManager.Device.Exception.AppException;
 import com.DeviceManager.Device.Exception.ErrorCode;
 import com.DeviceManager.Device.Repository.DeviceRepository;
 import com.DeviceManager.Device.dto.DeviceDTO;
+import com.DeviceManager.Device.dto.smallDTO.GetDeviceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -69,5 +71,16 @@ public class DeviceService {
 
     public void DeleteDevice(int id) {
         deviceRepository.deleteById(id);
+    }
+
+    public List<GetDeviceDTO> GetAllOnlyCode(){
+        List<String> getCodes = deviceRepository.findAllOnlyCode();
+        List<GetDeviceDTO> getDeviceDTOS = new ArrayList<>();
+        for(String i : getCodes){
+            String code = i;
+            GetDeviceDTO getDeviceDTO = new GetDeviceDTO(code);
+            getDeviceDTOS.add(getDeviceDTO);
+        }
+        return getDeviceDTOS;
     }
 }
