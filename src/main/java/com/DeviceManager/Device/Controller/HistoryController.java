@@ -6,7 +6,6 @@ import com.DeviceManager.Device.dto.ApiResponse;
 import com.DeviceManager.Device.dto.HistoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,5 +46,26 @@ public class HistoryController {
         apiResponse.setMessage("Delete Successful");
         historyService.deleteHistoryById(id);
         return apiResponse;
+    }
+
+    @GetMapping("histories/PageNumber")
+    public int getPageNumber() {
+        return historyService.PageNumberHistory();
+    }
+    @GetMapping("histories/PageNumber/{pageNumberId}")
+    public List<History> getPageNumberById(@PathVariable int pageNumberId) {
+        return historyService.getLimitHistory(pageNumberId);
+    }
+
+    @PutMapping("/histories/changeCurrentArea")
+    public ResponseEntity<String> changeCurrentArea() {
+        historyService.updateCurrentArea();
+        return ResponseEntity.ok("Current area changed");
+    }
+
+    @PutMapping("/histories/returnCurrentArea/{code}")
+    public ResponseEntity<String> returnCurrentArea(@PathVariable String code) {
+        historyService.returnCurrentArea(code);
+        return ResponseEntity.ok("Returned area changed");
     }
 }

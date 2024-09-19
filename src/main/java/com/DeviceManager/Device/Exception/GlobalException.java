@@ -13,11 +13,6 @@ public class GlobalException{
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 
-//    @ExceptionHandler(value = MethodArgumentNotValidException.class)
-//    ResponseEntity<?> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
-//        return ResponseEntity.badRequest().body(e.getFieldError().getDefaultMessage());
-//    }
-
     @ExceptionHandler(value = AppException.class)
     ResponseEntity<ApiResponse> handlingAppException(AppException e) {
         ApiResponse apiResponse = new ApiResponse();

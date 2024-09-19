@@ -49,4 +49,22 @@ public class HistoryService {
         History history = getHistoryById(id);
         historyRepository.delete(history);
     }
+
+    public int PageNumberHistory(){
+        int PageNumber = (int)Math.ceil((double) historyRepository.getHistoryCount() / 8);
+        return PageNumber;
+    }
+
+    public List<History> getLimitHistory(int pageNumber) {
+        int offset = (pageNumber - 1) * 8;
+        return historyRepository.getHistoryLimit(offset);
+    }
+
+    public void updateCurrentArea(){
+        historyRepository.updateCurrentArea();
+    }
+
+    public void returnCurrentArea(String code){
+        historyRepository.returnCurrentArea(code);
+    }
 }

@@ -4,6 +4,7 @@ import com.DeviceManager.Device.Entity.Device;
 import com.DeviceManager.Device.Service.DeviceService;
 import com.DeviceManager.Device.dto.ApiResponse;
 import com.DeviceManager.Device.dto.DeviceDTO;
+import com.DeviceManager.Device.dto.smallDTO.GetCountDeviceDTO;
 import com.DeviceManager.Device.dto.smallDTO.GetDeviceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -47,5 +48,19 @@ public class DeviceController {
     @GetMapping("/devices/only-codes")
     public List<GetDeviceDTO> getDeviceDTOList(){
         return deviceService.GetAllOnlyCode();
+    }
+
+    @GetMapping("/devices/tableSplit/{offsetValueNumber}") //Lấy list sau khi offset
+    public List<Device> getDeviceOffsetValue(@PathVariable int offsetValueNumber){
+        return deviceService.splitTableDevice(offsetValueNumber);
+    }
+    @GetMapping("/devices/tableSplit")
+    public int splitValuePage(){
+        return deviceService.splitValuePage(); // Xem có bao nhiêu trang
+    }
+
+    @GetMapping("/devices/counts")
+    public List<GetCountDeviceDTO> getCountDeviceDTOList(){
+        return deviceService.getCountDeviceDTOList();
     }
 }

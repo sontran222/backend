@@ -5,12 +5,16 @@ import com.DeviceManager.Device.Exception.AppException;
 import com.DeviceManager.Device.Exception.ErrorCode;
 import com.DeviceManager.Device.Repository.DeviceRepository;
 import com.DeviceManager.Device.dto.DeviceDTO;
+import com.DeviceManager.Device.dto.smallDTO.GetCountDeviceDTO;
 import com.DeviceManager.Device.dto.smallDTO.GetDeviceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class DeviceService {
@@ -82,5 +86,31 @@ public class DeviceService {
             getDeviceDTOS.add(getDeviceDTO);
         }
         return getDeviceDTOS;
+    }
+
+    public List<Device> splitTableDevice(int offsetValue){
+        int offset = (offsetValue - 1) * 8;
+        List<Device> devices = deviceRepository.splitTableDevice(offset);
+        return devices;
+    }
+
+    public int splitValuePage(){
+        int tableSplitPage = (int) Math.ceil((double)deviceRepository.countTableDevice() / 8);
+        return tableSplitPage;
+    }
+
+    public List<GetCountDeviceDTO> getCountDeviceDTOList(){
+        List<Object[]> getObjects = deviceRepository.getCountTableDevice();
+        List<GetCountDeviceDTO> ListCount = new ArrayList<>();
+        for(Object[] obj: getObjects){
+            GetCountDeviceDTO getCountDeviceDTO = new GetCountDeviceDTO(
+                    (String) obj[0],
+                    ((BigDecimal) obj[1]).intValue(),
+                    ((BigDecimal) obj[2]).intValue()
+            );
+            ListCount.add(getCountDeviceDTO);
+
+        }
+        return ListCount;
     }
 }
