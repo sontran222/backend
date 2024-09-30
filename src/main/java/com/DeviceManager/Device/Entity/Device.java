@@ -16,6 +16,7 @@ public class Device {
     private String mac;
     private int status;
     private String currentArea;
+    private String note;
 
     public int getId() {
         return id;
@@ -87,5 +88,13 @@ public class Device {
 
     public void setCurrentArea(String currentArea) {
         this.currentArea = currentArea;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

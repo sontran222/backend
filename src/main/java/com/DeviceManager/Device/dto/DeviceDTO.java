@@ -13,6 +13,7 @@ public class DeviceDTO {
     private String mac;
     private int status;
     private String currentArea;
+    private String note;
 
     public String getCode() {
         return code;
@@ -76,5 +77,13 @@ public class DeviceDTO {
 
     public void setCurrentArea(String currentArea) {
         this.currentArea = currentArea;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

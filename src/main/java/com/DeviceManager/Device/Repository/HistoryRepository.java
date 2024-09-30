@@ -26,6 +26,4 @@ public interface HistoryRepository extends JpaRepository<History, Integer> {
     @Modifying
     @Query(value = "update device d set d.current_area = (select current_area from history h where h.code = :code order by h.id desc Limit 1) where exists (Select 1 from history h where h.code = d.code) AND d.id IS NOT NULL",nativeQuery = true)
     public void returnCurrentArea(@Param("code") String code);
-
-
 }

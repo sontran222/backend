@@ -41,6 +41,7 @@ public class DeviceService {
         device.setMac(request.getMac());
         device.setStatus(request.getStatus());
         device.setCurrentArea(request.getCurrentArea());
+        device.setNote(request.getNote());
         return deviceRepository.save(device);
     }
 
@@ -51,10 +52,10 @@ public class DeviceService {
                 device.setType(request.getType());
                 device.setSerial(request.getSerial());
                 device.setImei(request.getImei());
-                device.setPurchaseDate(request.getPurchaseDate());
                 device.setMac(request.getMac());
                 device.setStatus(request.getStatus());
                 device.setCurrentArea(request.getCurrentArea());
+                device.setNote(request.getNote());
                 return deviceRepository.save(device);
             }
             if(deviceRepository.existsByCode(request.getCode())){
@@ -68,6 +69,7 @@ public class DeviceService {
             device.setMac(request.getMac());
             device.setStatus(request.getStatus());
             device.setCurrentArea(request.getCurrentArea());
+            device.setNote(request.getNote());
             return deviceRepository.save(device);
     }
 
