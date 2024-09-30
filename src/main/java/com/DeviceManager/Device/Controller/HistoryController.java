@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +17,7 @@ public class HistoryController {
     private HistoryService historyService;
 
     @PostMapping("/histories")
-    ApiResponse<History> addHistory(@RequestBody HistoryDTO request) {
+    ApiResponse<History> addHistory(@RequestBody @Valid HistoryDTO request) {
         ApiResponse<History> apiResponse = new ApiResponse<>();
         apiResponse.setCode(1000);
         apiResponse.setResult(historyService.createHistory(request));

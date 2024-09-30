@@ -1,13 +1,19 @@
 package com.DeviceManager.Device.dto;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class HistoryDTO {
     private LocalDate date;
+    @Size(min = 1, message = "VALID_CODE")
     private String code;
+    @Size(min = 1, message = "VALID_PERSON_LEND")
     private String personLend;
+    @Size(min = 1, message = "VALID_PERSON_RECEIVE")
     private String personReceive;
     private String note;
+    @Size(min = 1, message = "VALID_AREA")
     private String currentArea;
 
     public LocalDate getDate() {
